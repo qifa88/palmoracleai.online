@@ -35,8 +35,8 @@
       font-size: 20px;
       margin: 0 20px;
     }
-    /* 添加星点背景作为备用方案 */
-    body:before {
+    /* 更强烈的星点背景效果 */
+    body::before {
       content: '';
       position: fixed;
       top: 0;
@@ -44,100 +44,54 @@
       right: 0;
       bottom: 0;
       background-image: 
-        radial-gradient(circle at 10% 20%, rgba(255,90,30,1) 0%, rgba(0,0,0,0) 20%),
-        radial-gradient(circle at 90% 20%, rgba(255,90,30,1) 0%, rgba(0,0,0,0) 20%),
-        radial-gradient(circle at 50% 50%, rgba(255,90,30,0.8) 0%, rgba(0,0,0,0) 40%),
-        radial-gradient(circle at 90% 90%, rgba(255,70,20,1) 0%, rgba(0,0,0,0) 20%),
-        radial-gradient(circle at 10% 90%, rgba(255,80,40,1) 0%, rgba(0,0,0,0) 20%);
-      animation: pulse 5s infinite alternate;
+        radial-gradient(2px 2px at 40px 60px, #FF5722 100%, transparent),
+        radial-gradient(2px 2px at 20px 50px, #FF9800 100%, transparent),
+        radial-gradient(2px 2px at 30px 100px, #FF7043 100%, transparent),
+        radial-gradient(2px 2px at 40px 60px, #FF5722 100%, transparent),
+        radial-gradient(3px 3px at 110px 90px, #FF6E40 100%, transparent),
+        radial-gradient(2px 2px at 190px 150px, #FFAB40 100%, transparent),
+        radial-gradient(3px 3px at 100px 120px, #FFD740 100%, transparent),
+        radial-gradient(3px 3px at 160px 180px, #FF5252 100%, transparent),
+        radial-gradient(4px 4px at 210px 40px, #FF7043 100%, transparent),
+        radial-gradient(2px 2px at 10px 200px, #FFAB40 100%, transparent);
+      background-size: 300% 300%;
+      animation: pulse 15s ease infinite, moveBg 30s ease infinite;
       z-index: -1;
     }
     @keyframes pulse {
-      0% { opacity: 0.7; }
-      100% { opacity: 1; }
+      0% { opacity: 0.5; }
+      50% { opacity: 1; }
+      100% { opacity: 0.5; }
+    }
+    @keyframes moveBg {
+      0% { background-position: 0% 0%; }
+      25% { background-position: 100% 25%; }
+      50% { background-position: 50% 100%; }
+      75% { background-position: 25% 75%; }
+      100% { background-position: 0% 0%; }
+    }
+    /* 添加光晕效果 */
+    body::after {
+      content: '';
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at center, transparent 45%, rgba(30, 0, 0, 0.8) 100%);
+      z-index: -1;
+      animation: rotate 90s linear infinite;
+    }
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
   </style>
 </head>
 <body>
-  <canvas id="stars" style="position:fixed; top:0; left:0; width:100%; height:100%; z-index:-2; display:block;"></canvas>
   <div class="content">
     <h1>MYSTIC PALM READER</h1>
     <p>Upload a photo of your palm for AI-powered fortune reading</p>
   </div>
-
-  <script>
-    // 调试信息
-    console.log("Script starting...");
-    const canvas = document.getElementById("stars");
-    console.log("Canvas element:", canvas);
-    const ctx = canvas.getContext("2d");
-    console.log("Canvas context:", ctx);
-    let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight);
-    console.log("Canvas dimensions:", width, "x", height);
-
-    const stars = [];
-    const STAR_COUNT = 300;
-
-    class Star {
-      constructor() {
-        this.reset();
-      }
-      reset() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.size = Math.random() * 5 + 2;
-        this.alpha = Math.random() * 0.7 + 0.3;
-        this.dx = (Math.random() - 0.5) * 0.2;
-        this.dy = (Math.random() - 0.5) * 0.2;
-      }
-      update() {
-        this.x += this.dx;
-        this.y += this.dy;
-        if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
-          this.reset();
-        }
-      }
-      draw() {
-        ctx.beginPath();
-        const gradient = ctx.createRadialGradient(
-          this.x,
-          this.y,
-          0,
-          this.x,
-          this.y,
-          this.size * 10
-        );
-        gradient.addColorStop(0, `rgba(255, 120, 50, 1)`);
-        gradient.addColorStop(1, "transparent");
-        ctx.fillStyle = gradient;
-        ctx.arc(this.x, this.y, this.size * 10, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-
-    for (let i = 0; i < STAR_COUNT; i++) {
-      stars.push(new Star());
-    }
-
-    function animate() {
-      // 使用半透明黑色创建拖尾效果，而不是完全清除
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
-      ctx.fillRect(0, 0, width, height);
-      
-      stars.forEach((star) => {
-        star.update();
-        star.draw();
-      });
-      requestAnimationFrame(animate);
-    }
-
-    animate();
-
-    window.addEventListener("resize", () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    });
-  </script>
 </body>
 </html>
