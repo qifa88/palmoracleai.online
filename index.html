@@ -9,49 +9,54 @@
       padding: 0;
       background-color: #000;
       color: #d4af37;
+      font-family: 'Times New Roman', serif;
+      text-align: center;
+      height: 100vh;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
-      min-height: 100vh;
+      align-items: center;
+      background-image: url('https://i.postimg.cc/G3VZvHsS/palm-ui-visual-3.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
     }
     
-    .content-container {
-      position: relative;
-      text-align: center;
+    h1 {
+      font-size: 3.5rem;
+      color: #d4af37;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
     }
     
-    .main-image {
-      max-width: 100%;
-      height: auto;
+    p {
+      font-size: 1.5rem;
+      margin: 20px 0 40px;
+      color: #d4af37;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+      max-width: 600px;
     }
     
-    .button-container {
-      position: absolute;
-      bottom: 50px;
-      left: 0;
-      width: 100%;
-      text-align: center;
-    }
-    
-    button {
+    .palm-btn {
       background-color: transparent;
       border: 2px solid #d4af37;
       color: #d4af37;
-      padding: 15px 30px;
-      border-radius: 30px;
+      padding: 15px 40px;
+      border-radius: 50px;
       font-size: 1.2rem;
       cursor: pointer;
       text-transform: uppercase;
+      transition: all 0.3s;
+    }
+    
+    .palm-btn:hover {
+      background-color: rgba(212, 175, 55, 0.2);
+      box-shadow: 0 0 15px #d4af37;
     }
   </style>
 </head>
 <body>
-  <div class="content-container">
-    <img src="https://i.ibb.co/BcQtnvr/palm-ui-visual-3.jpg" alt="Mystic Palm Reader" class="main-image">
-    <div class="button-container">
-      <button onclick="alert('AI Palm Reading functionality coming soon!')">REVEAL MY PALM DESTINY</button>
-    </div>
-  </div>
+  <h1>MYSTIC PALM READER</h1>
+  <p>Discover your destiny through AI-powered palm analysis</p>
+  <button class="palm-btn" onclick="alert('AI Palm Reading coming soon!')">REVEAL MY PALM DESTINY</button>
 </body>
 </html> 
