@@ -1,14 +1,148 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Mystic Palmistry | Gateway to Destiny</title>
+  <title>Mystic Palm Reader | AI-Powered Palmistry</title>
   <meta charset="utf-8">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      color: #d4af37;
+      font-family: 'Times New Roman', serif;
+      overflow-x: hidden;
+    }
+    
+    .container {
+      display: flex;
+      height: 100vh;
+      background-image: url('https://i.imgur.com/PtgIXTu.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .left-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0 5%;
+    }
+    
+    .right-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 5%;
+    }
+    
+    h1 {
+      font-size: 3.5rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #d4af37;
+      text-shadow: 0 0 10px rgba(255, 165, 0, 0.5);
+    }
+    
+    p {
+      font-size: 1.2rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    .upload-btn {
+      background-color: transparent;
+      border: 2px solid #d4af37;
+      color: #d4af37;
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .upload-btn:hover {
+      background-color: rgba(212, 175, 55, 0.2);
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+    }
+    
+    .palm-analysis {
+      border: 1px solid #d4af37;
+      border-radius: 20px;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+    
+    .reading-sections {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+    }
+    
+    .reading-section {
+      text-align: center;
+      flex: 1;
+      margin: 0 10px;
+    }
+    
+    .section-icon {
+      width: 60px;
+      height: 60px;
+      border: 1px solid #d4af37;
+      border-radius: 50%;
+      margin: 0 auto 10px;
+    }
+    
+    .hand-diagram {
+      max-width: 100%;
+      margin-bottom: 20px;
+    }
+  </style>
 </head>
-<body style="background-color: black; color: gold; text-align: center; font-family: serif; padding-top: 20%;">
-  <h1>Mystic Palmistry · Gateway to Destiny</h1>
-  <p>Your journey to self-discovery begins here</p>
-  <button style="background-color: transparent; border: 1px solid gold; color: gold; padding: 10px 20px; border-radius: 20px; cursor: pointer; margin-top: 20px;">
-    Reveal My Palm's Secrets
-  </button>
+<body>
+  <div class="container">
+    <div class="left-panel">
+      <h1>MYSTIC PALM READER</h1>
+      <p>Upload a photo of your palm for AI-powered fortune reading</p>
+      <button class="upload-btn">REVEAL MY PALM DESTINY</button>
+    </div>
+    
+    <div class="right-panel">
+      <div class="palm-analysis">
+        <h2 style="text-align: center; margin-bottom: 30px;">PALMISTRY ANALYSIS</h2>
+        
+        <div class="hand-diagram">
+          <!-- 手掌图 - 这里可以使用SVG或图片 -->
+        </div>
+        
+        <div class="reading-sections">
+          <div class="reading-section">
+            <h3>Fortune</h3>
+            <p>Reveals your future path and opportunities</p>
+          </div>
+          
+          <div class="reading-section">
+            <h3>Love</h3>
+            <p>Uncovers your romantic tendencies</p>
+          </div>
+          
+          <div class="reading-section">
+            <h3>Wisdom</h3>
+            <p>Enhances your potential abilities</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    document.querySelector('.upload-btn').addEventListener('click', function() {
+      alert('Upload functionality will be implemented in the full version');
+    });
+  </script>
 </body>
 </html> 
