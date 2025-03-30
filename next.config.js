@@ -4,6 +4,8 @@ module.exports = {
     remotePatterns: [
       { protocol: 'http', hostname: '**' },
       { protocol: 'https', hostname: '**' }
-    ]
-  }
+    ],
+    unoptimized: true
+  },
+  output: 'export'
 } 
