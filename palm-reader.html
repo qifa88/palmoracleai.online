@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mystic Palm Reader | AI-Powered Palmistry</title>
+  <meta charset="utf-8">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      color: #d4af37;
+      font-family: 'Times New Roman', serif;
+      overflow-x: hidden;
+      background-image: url('/palm_ui_visual_3.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
+    }
+    
+    .container {
+      display: flex;
+      height: 100vh;
+    }
+    
+    .left-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0 5%;
+    }
+    
+    h1 {
+      font-size: 3.5rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #d4af37;
+      text-shadow: 0 0 10px rgba(255, 165, 0, 0.5);
+    }
+    
+    p {
+      font-size: 1.2rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #d4af37;
+    }
+    
+    .upload-text {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      max-width: 500px;
+    }
+    
+    .destiny-btn {
+      background-color: transparent;
+      border: 2px solid #d4af37;
+      color: #d4af37;
+      padding: 15px 30px;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 30px;
+    }
+    
+    .destiny-btn:hover {
+      background-color: rgba(212, 175, 55, 0.2);
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+    }
+
+    .bottom-section {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left-panel">
+      <h1>MYSTIC PALM READER</h1>
+      <p class="upload-text">Upload a photo of your palm for AI-powered fortune reading</p>
+      <button class="destiny-btn" onclick="location.href='analyze.html'">REVEAL MY PALM DESTINY</button>
+    </div>
+  </div>
+  
+  <div class="bottom-section">
+    <p>&copy; 2025 Mystic Palm Reader. All rights reserved.</p>
+  </div>
+  
+  <script>
+    document.querySelector('.destiny-btn').addEventListener('click', function() {
+      // 未来将添加上传功能
+      console.log('Button clicked');
+    });
+  </script>
+</body>
+</html> 
