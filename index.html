@@ -9,8 +9,9 @@
       margin: 0;
       padding: 0;
       overflow: hidden;
-      background: black;
+      background: #000 url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSIjRkZBMDAwIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxjaXJjbGUgY3g9IjQiIGN5PSI0IiByPSIxIi8+PGNpcmNsZSBjeD0iMzAiIGN5PSIxOSIgcj0iMiIvPjxjaXJjbGUgb3BhY2l0eT0iLjUiIGN4PSIxMTIiIGN5PSI1MCIgcj0iMS41Ii8+PGNpcmNsZSBjeD0iMTgwIiBjeT0iMzAiIHI9IjEiLz48Y2lyY2xlIGN4PSIxOTAiIGN5PSIxNTAiIHI9IjEuNSIvPjxjaXJjbGUgb3BhY2l0eT0iLjgiIGN4PSI5MCIgY3k9IjE4MCIgcj0iMSIvPjxjaXJjbGUgY3g9IjQwIiBjeT0iMTUwIiByPSIxLjUiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSI5MCIgcj0iMS41Ii8+PC9nPjwvc3ZnPg==');
       height: 100%;
+      position: relative;
     }
     canvas {
       position: absolute;
@@ -35,41 +36,41 @@
       font-size: 20px;
       margin: 0 20px;
     }
-    /* 更强烈的星点背景效果 */
-    body::before {
-      content: '';
+    /* 添加明亮的星点 */
+    .stars {
       position: fixed;
       top: 0;
       left: 0;
-      right: 0;
-      bottom: 0;
-      background-image: 
-        radial-gradient(2px 2px at 40px 60px, #FF5722 100%, transparent),
-        radial-gradient(2px 2px at 20px 50px, #FF9800 100%, transparent),
-        radial-gradient(2px 2px at 30px 100px, #FF7043 100%, transparent),
-        radial-gradient(2px 2px at 40px 60px, #FF5722 100%, transparent),
-        radial-gradient(3px 3px at 110px 90px, #FF6E40 100%, transparent),
-        radial-gradient(2px 2px at 190px 150px, #FFAB40 100%, transparent),
-        radial-gradient(3px 3px at 100px 120px, #FFD740 100%, transparent),
-        radial-gradient(3px 3px at 160px 180px, #FF5252 100%, transparent),
-        radial-gradient(4px 4px at 210px 40px, #FF7043 100%, transparent),
-        radial-gradient(2px 2px at 10px 200px, #FFAB40 100%, transparent);
-      background-size: 300% 300%;
-      animation: pulse 15s ease infinite, moveBg 30s ease infinite;
-      z-index: -1;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      background: transparent;
+      overflow: hidden;
     }
-    @keyframes pulse {
-      0% { opacity: 0.5; }
-      50% { opacity: 1; }
-      100% { opacity: 0.5; }
+    
+    .star {
+      position: absolute;
+      background-color: transparent;
+      border-radius: 50%;
+      animation: twinkle 5s infinite ease-in-out;
     }
-    @keyframes moveBg {
-      0% { background-position: 0% 0%; }
-      25% { background-position: 100% 25%; }
-      50% { background-position: 50% 100%; }
-      75% { background-position: 25% 75%; }
-      100% { background-position: 0% 0%; }
+    
+    .star::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, #FFA500, transparent 70%);
+      border-radius: 50%;
     }
+    
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+
     /* 添加光晕效果 */
     body::after {
       content: '';
@@ -78,9 +79,10 @@
       left: -50%;
       width: 200%;
       height: 200%;
-      background: radial-gradient(circle at center, transparent 45%, rgba(30, 0, 0, 0.8) 100%);
+      background: radial-gradient(circle at center, transparent 30%, rgba(80, 20, 0, 0.6) 100%);
       z-index: -1;
-      animation: rotate 90s linear infinite;
+      animation: rotate 60s linear infinite;
+      pointer-events: none;
     }
     @keyframes rotate {
       0% { transform: rotate(0deg); }
@@ -89,9 +91,46 @@
   </style>
 </head>
 <body>
+  <div class="stars" id="stars-container"></div>
   <div class="content">
     <h1>MYSTIC PALM READER</h1>
     <p>Upload a photo of your palm for AI-powered fortune reading</p>
+    <div style="margin-top: 40px;">
+      <label for="palm-upload" style="display: inline-block; padding: 12px 24px; background: rgba(255, 165, 0, 0.2); border: 2px solid #FFA500; border-radius: 8px; color: #FFA500; cursor: pointer; font-size: 18px; transition: all 0.3s ease;">
+        Upload Your Palm Photo
+      </label>
+      <input id="palm-upload" type="file" accept="image/*" style="display: none;">
+    </div>
+    <p style="margin-top: 40px; font-size: 12px; opacity: 0.6;">&copy; 2025 palmoracleai.online</p>
   </div>
+  
+  <script>
+    // 创建星星
+    const starsContainer = document.getElementById('stars-container');
+    const starCount = 50;
+    
+    for (let i = 0; i < starCount; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      
+      // 随机位置
+      const x = Math.random() * 100;
+      const y = Math.random() * 100;
+      
+      // 随机大小
+      const size = Math.random() * 4 + 1;
+      
+      // 随机动画延迟
+      const delay = Math.random() * 5;
+      
+      star.style.left = `${x}%`;
+      star.style.top = `${y}%`;
+      star.style.width = `${size}px`;
+      star.style.height = `${size}px`;
+      star.style.animationDelay = `${delay}s`;
+      
+      starsContainer.appendChild(star);
+    }
+  </script>
 </body>
 </html>
