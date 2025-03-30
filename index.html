@@ -7,19 +7,31 @@
     body {
       margin: 0;
       padding: 0;
-      height: 100vh;
       background-color: #000;
-      background-image: url('https://dl.dropboxusercontent.com/scl/fi/w7bkpxjccpbw5u3pnkchn/palm_ui_visual_3.jpg?rlkey=a2i3wy2bhw7j0f8pzwrjt3wt5');
-      background-size: cover;
-      background-position: center;
+      color: #d4af37;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
       align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    
+    .content-container {
+      position: relative;
+      text-align: center;
+    }
+    
+    .main-image {
+      max-width: 100%;
+      height: auto;
     }
     
     .button-container {
-      margin-bottom: 50px;
+      position: absolute;
+      bottom: 50px;
+      left: 0;
+      width: 100%;
+      text-align: center;
     }
     
     button {
@@ -35,8 +47,11 @@
   </style>
 </head>
 <body>
-  <div class="button-container">
-    <button onclick="alert('AI Palm Reading functionality coming soon!')">REVEAL MY PALM DESTINY</button>
+  <div class="content-container">
+    <img src="https://i.ibb.co/BcQtnvr/palm-ui-visual-3.jpg" alt="Mystic Palm Reader" class="main-image">
+    <div class="button-container">
+      <button onclick="alert('AI Palm Reading functionality coming soon!')">REVEAL MY PALM DESTINY</button>
+    </div>
   </div>
 </body>
 </html> 
