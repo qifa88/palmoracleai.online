@@ -7,49 +7,36 @@
     body {
       margin: 0;
       padding: 0;
-      background-color: #000;
-      color: #d4af37;
-      font-family: 'Times New Roman', serif;
-    }
-    
-    .welcome-screen {
       height: 100vh;
+      background-color: #000;
+      background-image: url('https://dl.dropboxusercontent.com/scl/fi/w7bkpxjccpbw5u3pnkchn/palm_ui_visual_3.jpg?rlkey=a2i3wy2bhw7j0f8pzwrjt3wt5');
+      background-size: cover;
+      background-position: center;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-end;
       align-items: center;
-      text-align: center;
     }
     
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: #d4af37;
-    }
-    
-    p {
-      margin-bottom: 2rem;
-      color: #d4af37;
+    .button-container {
+      margin-bottom: 50px;
     }
     
     button {
       background-color: transparent;
-      border: 1px solid #d4af37;
+      border: 2px solid #d4af37;
       color: #d4af37;
-      padding: 10px 20px;
-      border-radius: 20px;
+      padding: 15px 30px;
+      border-radius: 30px;
+      font-size: 1.2rem;
       cursor: pointer;
-      font-size: 1rem;
+      text-transform: uppercase;
     }
   </style>
 </head>
 <body>
-  <div class="welcome-screen">
-    <h1>Mystic Palmistry · Gateway to Destiny</h1>
-    <p>Your journey to self-discovery begins here</p>
-    <button onclick="window.location.href='https://www.dropbox.com/scl/fi/w7bkpxjccpbw5u3pnkchn/palm_ui_visual_3.jpg?rlkey=a2i3wy2bhw7j0f8pzwrjt3wt5'">
-      Reveal My Palm's Secrets
-    </button>
+  <div class="button-container">
+    <button onclick="alert('AI Palm Reading functionality coming soon!')">REVEAL MY PALM DESTINY</button>
   </div>
 </body>
 </html> 
