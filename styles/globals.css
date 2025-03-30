@@ -1,0 +1,27 @@
+/* 暂时注释掉Tailwind导入
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+*/
+
+body {
+  background-color: #000000;
+  color: #d4af37;
+}
+
+/* 添加一些基本样式以替代Tailwind */
+.text-center { text-align: center; }
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.min-h-screen { min-height: 100vh; }
+.mt-8 { margin-top: 2rem; }
+.text-4xl { font-size: 2.25rem; }
+.text-yellow-300 { color: #fcd34d; }
+.text-yellow-200 { color: #fde68a; }
+.rounded-full { border-radius: 9999px; }
+.border { border-width: 1px; }
+.border-yellow-400 { border-color: #fbbf24; }
+.w-60 { width: 15rem; }
+.h-60 { height: 15rem; } 
