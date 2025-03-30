@@ -4,84 +4,22 @@
   <title>Mystic Palm Reader | AI-Powered Palmistry</title>
   <meta charset="utf-8">
   <style>
-    body {
+    html, body {
       margin: 0;
       padding: 0;
-      background-color: #000;
-      color: #d4af37;
-      font-family: 'Times New Roman', serif;
-      text-align: center;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      /* 使用直接图片元素替代背景图 */
-    }
-    
-    .background-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
       height: 100%;
-      z-index: -1;
+      width: 100%;
       overflow: hidden;
     }
     
-    .background-image {
+    img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-    }
-    
-    .content {
-      position: relative;
-      z-index: 1;
-    }
-    
-    h1 {
-      font-size: 3.5rem;
-      color: #d4af37;
-      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
-    }
-    
-    p {
-      font-size: 1.5rem;
-      margin: 20px 0 40px;
-      color: #d4af37;
-      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
-      max-width: 600px;
-    }
-    
-    .palm-btn {
-      background-color: transparent;
-      border: 2px solid #d4af37;
-      color: #d4af37;
-      padding: 15px 40px;
-      border-radius: 50px;
-      font-size: 1.2rem;
-      cursor: pointer;
-      text-transform: uppercase;
-      transition: all 0.3s;
-    }
-    
-    .palm-btn:hover {
-      background-color: rgba(212, 175, 55, 0.2);
-      box-shadow: 0 0 15px #d4af37;
+      object-fit: contain;
     }
   </style>
 </head>
 <body>
-  <div class="background-container">
-    <!-- 使用img标签代替背景，这样如果图片加载失败会更明显 -->
-    <img src="https://i.imgur.com/BcQtnvr.jpg" alt="Palm Reading Background" class="background-image">
-  </div>
-  
-  <div class="content">
-    <h1>MYSTIC PALM READER</h1>
-    <p>Discover your destiny through AI-powered palm analysis</p>
-    <button class="palm-btn" onclick="alert('AI Palm Reading coming soon!')">REVEAL MY PALM DESTINY</button>
-  </div>
+  <img src="https://i.ibb.co/JKxMGZD/palm-reader-full.jpg" alt="Palm Reader">
 </body>
 </html> 
