@@ -16,10 +16,28 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      background-image: url('https://i.postimg.cc/G3VZvHsS/palm-ui-visual-3.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+      /* 使用直接图片元素替代背景图 */
+    }
+    
+    .background-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+    
+    .background-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .content {
+      position: relative;
+      z-index: 1;
     }
     
     h1 {
@@ -55,8 +73,15 @@
   </style>
 </head>
 <body>
-  <h1>MYSTIC PALM READER</h1>
-  <p>Discover your destiny through AI-powered palm analysis</p>
-  <button class="palm-btn" onclick="alert('AI Palm Reading coming soon!')">REVEAL MY PALM DESTINY</button>
+  <div class="background-container">
+    <!-- 使用img标签代替背景，这样如果图片加载失败会更明显 -->
+    <img src="https://i.imgur.com/BcQtnvr.jpg" alt="Palm Reading Background" class="background-image">
+  </div>
+  
+  <div class="content">
+    <h1>MYSTIC PALM READER</h1>
+    <p>Discover your destiny through AI-powered palm analysis</p>
+    <button class="palm-btn" onclick="alert('AI Palm Reading coming soon!')">REVEAL MY PALM DESTINY</button>
+  </div>
 </body>
 </html> 
