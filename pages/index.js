@@ -9,7 +9,6 @@ export default function Home() {
   const fileInputRef = useRef(null);
   const router = useRouter();
   const [previewURL, setPreviewURL] = useState(null);
-  const animationContainer = useRef(null);
 
   useEffect(() => {
     const element = document.getElementById('lottie-enter');
@@ -40,26 +39,19 @@ export default function Home() {
   return (
     <div className="relative bg-black min-h-screen text-gold flex flex-col items-center justify-center px-4 overflow-hidden">
       <Head>
-        <title>神秘掌相 | Palm Oracle AI</title>
-        <meta name="description" content="AI驱动的手相分析与命运解读 - palmoracleai.online" />
-        <link rel="canonical" href="https://palmoracleai.online" />
-        <meta property="og:title" content="Palm Oracle AI - 神秘掌相" />
-        <meta property="og:description" content="上传手掌照片，AI解读你的命运线索" />
-        <meta property="og:url" content="https://palmoracleai.online" />
-        <meta property="og:type" content="website" />
+        <title>神秘掌相 | 命运之门</title>
+        <meta name="description" content="AI驱动的掌相分析，融合东方神秘与现代设计。" />
       </Head>
 
-      {/* 背景图层 */}
       <Image
         src="/palm_ui_visual_3.jpg"
-        alt="Mystic Palm Visual"
+        alt="神秘掌相背景"
         layout="fill"
         objectFit="cover"
         quality={95}
         className="z-0 opacity-70"
       />
 
-      {/* 内容层 */}
       <div className="relative z-10 flex flex-col items-center justify-center">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}

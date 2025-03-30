@@ -21,6 +21,22 @@ export default function AnalyzePage() {
     }
   }, [image]);
 
+  useEffect(() => {
+    if (image) {
+      // 5秒后自动跳转到结果页
+      const timer = setTimeout(() => {
+        router.push({
+          pathname: '/result',
+          query: { 
+            fortune: "您的手相显示您是一个富有创造力的人。您的生命线长而稳定，意味着您将拥有健康长寿的生活。您的智慧线显示您有出色的分析能力和创新思维。您的感情线表明您在情感上非常忠诚，但有时需要更多地表达自己的情感。"
+          }
+        });
+      }, 5000);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [image, router]);
+
   return (
     <div className="relative bg-black text-yellow-200 min-h-screen flex flex-col items-center justify-center px-4">
       <Head>

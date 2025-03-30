@@ -1,8 +1,6 @@
-/* 暂时注释掉Tailwind导入
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-*/
 
 body {
   background-color: #000000;
