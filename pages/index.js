@@ -122,4 +122,4 @@ export default function Home() {
       </div>
     </div>
   );
-}
+}}// Updated title position to red box area - 2025-03-31 v2
