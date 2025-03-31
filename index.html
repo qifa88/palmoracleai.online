@@ -25,10 +25,10 @@
       color: #ffd5a3;
       text-align: center;
       font-family: "Cinzel", serif;
-      padding-top: 50px;
+      padding-top: 30px; /* 减少顶部空间 */
       pointer-events: none; /* 确保点击可以穿透到下面的元素 */
       background: radial-gradient(circle at center, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0) 100%);
-      padding: 80px 20px 20px 20px;
+      padding: 50px 20px 20px 20px; /* 减少内边距 */
       width: 100%;
       box-sizing: border-box;
       border-radius: 15px;
@@ -131,14 +131,9 @@
       }
     }
     
-    /* 移除页面底部可能出现的重复内容 */
-    .duplicate-content {
-      display: none;
-    }
-    
     /* 调整按钮样式与新背景匹配 */
     .upload-btn-container {
-      margin-top: 100px; /* 增加与其他内容的间距 */
+      margin-top: 150px; /* 增加按钮顶部间距，远离手指区域 */
       position: relative;
       z-index: 20; /* 确保在最顶层 */
     }
@@ -225,10 +220,7 @@
     <p class="copyright" style="margin-top: 40px; font-size: 12px; opacity: 0.6;">&copy; 2025 palmoracleai.online</p>
   </div>
   
-  <!-- 将页面底部可能出现的重复内容标记为duplicate-content类 -->
-  <div class="duplicate-content">
-    <!-- 任何可能的重复内容将在这里并被隐藏 -->
-  </div>
+  <!-- 移除重复内容区域，保持页面简洁 -->
   
   <script>
     // 创建星星
