@@ -85,10 +85,10 @@ export default function Home() {
           Mystic Palm Oracle · Gateway to Destiny
         </motion.h1>
 
-        <p className="upload-instruction">Upload a photo of your palm for AI-powered fortune reading</p>
+        <p className="upload-instruction mt-2">Upload a photo of your palm for AI-powered fortune reading</p>
 
         <motion.div
-          className="mt-2 w-40 h-40"
+          className="mt-6 w-40 h-40"
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.8, duration: 1 }}
@@ -97,7 +97,7 @@ export default function Home() {
         </motion.div>
 
         <motion.button
-          className="mt-4 px-8 py-3 border border-yellow-400 text-yellow-200 rounded-full hover:bg-yellow-500 hover:text-black transition shadow-lg backdrop-blur-md"
+          className="mt-8 px-8 py-3 border border-yellow-400 text-yellow-200 rounded-full hover:bg-yellow-500 hover:text-black transition shadow-lg backdrop-blur-md"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={triggerUpload}
