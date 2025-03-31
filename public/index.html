@@ -25,12 +25,15 @@
       color: #ffd5a3;
       text-align: center;
       font-family: "Cinzel", serif;
-      padding-top: 80px;
+      padding-top: 60px;
       pointer-events: none; /* 确保点击可以穿透到下面的元素 */
-      background: radial-gradient(circle at center, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 70%);
+      background: radial-gradient(circle at center, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%);
       padding: 80px 20px 20px 20px;
       width: 100%;
       box-sizing: border-box;
+      border-radius: 15px;
+      margin: 0 auto;
+      max-width: 800px;
     }
     h1 {
       font-size: 64px;
@@ -97,12 +100,12 @@
     .palm-background {
       position: fixed;
       top: 0;
-      left: -10%; /* 偏移到左侧 */
-      width: 80%; /* 减小尺寸 */
+      left: 0; /* 恢复居中 */
+      width: 60%; /* 进一步减小尺寸 */
       height: 100%;
       background-image: url('palm_ui_visual_3.jpg');
       background-size: cover; 
-      background-position: center top;
+      background-position: center center; /* 居中对齐背景图 */
       background-repeat: no-repeat;
       opacity: 0.95;
       border-radius: 0;
@@ -133,6 +136,12 @@
     }
     
     /* 调整按钮样式与新背景匹配 */
+    .upload-btn-container {
+      margin-top: 100px; /* 增加与其他内容的间距 */
+      position: relative;
+      z-index: 20; /* 确保在最顶层 */
+    }
+    
     .upload-btn {
       display: inline-block; 
       padding: 12px 24px; 
@@ -148,7 +157,7 @@
       transform: translateX(-50px);
       animation: slideInFromLeft 1.5s ease-out 0.8s forwards;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.7), 0 0 30px rgba(255, 168, 70, 0.4);
-      margin-top: 60px; /* 增加上方间距，避免与背景重叠 */
+      margin-top: 20px;
     }
     
     .upload-btn:hover {
@@ -206,7 +215,7 @@
   <div class="content">
     <h1>MYSTIC PALM READER</h1>
     <p>Upload a photo of your palm for AI-powered fortune reading</p>
-    <div style="margin-top: 40px;">
+    <div class="upload-btn-container">
       <label for="palm-upload" class="upload-btn">
         Upload Your Palm Photo
       </label>
