@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mystic Palm Reader | AI-Powered Palmistry</title>
+  <meta charset="utf-8">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      background-color: #000; /* 黑色背景 */
+    }
+    
+    .particle-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; /* 改回contain以显示完整图片 */
+      object-position: center;
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="particleCanvas" class="particle-background"></canvas>
+  <img src="public/palm_ui_visual_3.jpg" alt="Palm Reader">
+  
+  <script>
+    // 红金色流沙粒子效果
+    const canvas = document.getElementById('particleCanvas');
+    const ctx = canvas.getContext('2d');
+    
+    // 设置canvas大小为窗口大小
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    // 粒子数组
+    let particles = [];
+    
+    // 创建粒子类
+    class Particle {
+      constructor() {
+        // 主要在图片两侧生成粒子
+        if (Math.random() > 0.5) {
+          // 左侧区域 (0-30% 宽度)
+          this.x = Math.random() * (canvas.width * 0.3);
+        } else {
+          // 右侧区域 (70-100% 宽度)
+          this.x = canvas.width * 0.7 + Math.random() * (canvas.width * 0.3);
+        }
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 3 + 0.5; // 更像星点的大小
+        // 更明显的流动效果
+        this.speedX = Math.random() * 0.4 - 0.2; // 减慢速度
+        this.speedY = Math.random() * 0.4 - 0.2; // 减慢速度
+        this.color = this.getRandomColor();
+        this.alpha = Math.random() * 0.8 + 0.2; // 透明度变化
+        this.pulse = Math.random() * 0.01 + 0.005; // 更缓慢的脉冲
+        this.twinkle = Math.random() * 0.01; // 闪烁效果
+        this.maxSize = this.size + Math.random() * 2;
+        this.originalSize = this.size;
+      }
+      
+      // 获取随机红金色调
+      getRandomColor() {
+        const colors = [
+          'rgb(255, 80, 30)',   // 亮红色
+          'rgb(255, 50, 20)',   // 更亮的红色
+          'rgb(255, 30, 10)',   // 最亮红色
+          'rgb(255, 100, 40)',  // 红橙色
+          'rgb(255, 70, 20)'    // 深红色
+        ];
+        return colors[Math.floor(Math.random() * colors.length)];
+      }
+      
+      // 更新粒子位置
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        
+        // 脉冲效果 - 大小变化
+        this.size += Math.sin(Date.now() * this.pulse) * 0.1;
+        // 闪烁效果 - 透明度变化
+        this.alpha = this.alpha + Math.sin(Date.now() * this.twinkle) * 0.1;
+        if (this.alpha < 0.3) this.alpha = 0.3;
+        if (this.alpha > 1) this.alpha = 1;
+        if (this.size < this.originalSize * 0.8) this.size = this.originalSize * 0.8;
+        if (this.size > this.maxSize) this.size = this.maxSize;
+        
+        // 边界检测
+        if (this.x > canvas.width) this.x = 0;
+        if (this.x < 0) this.x = canvas.width;
+        if (this.y > canvas.height) this.y = 0;
+        if (this.y < 0) this.y = canvas.height;
+      }
+      
+      // 绘制粒子
+      draw() {
+        ctx.fillStyle = this.color;
+        ctx.globalAlpha = this.alpha;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // 添加光晕效果
+        const gradient = ctx.createRadialGradient(
+          this.x, this.y, this.size * 0.2,
+          this.x, this.y, this.size * 3
+        );
+        gradient.addColorStop(0, this.color.replace('rgb', 'rgba').replace(')', ', 0.9)'));
+        gradient.addColorStop(0.4, this.color.replace('rgb', 'rgba').replace(')', ', 0.4)'));
+        gradient.addColorStop(1, this.color.replace('rgb', 'rgba').replace(')', ', 0)'));
+        
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size * 3, 0, Math.PI * 2);
+        ctx.fill();
+        
+        ctx.globalAlpha = 1;
+      }
+    }
+    
+    // 初始化粒子
+    function init() {
+      for (let i = 0; i < 300; i++) { // 更多粒子
+        particles.push(new Particle());
+      }
+    }
+    
+    // 动画循环
+    function animate() {
+      // 半透明清除 - 创建拖尾效果
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.07)'; // 更长的拖尾
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
+      }
+      
+      // 每帧添加少量新粒子
+      if (Math.random() > 0.92) { // 更频繁添加新粒子
+        particles.push(new Particle());
+        // 保持粒子总数在合理范围内
+        if (particles.length > 350) {
+          particles.splice(0, 5); // 一次删除多个粒子以维持性能
+        }
+      }
+      
+      requestAnimationFrame(animate);
+    }
+    
+    // 窗口大小改变时调整canvas大小
+    window.addEventListener('resize', function() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+    
+    // 启动动画
+    init();
+    animate();
+  </script>
+</body>
+</html> 
