@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mystic Palm Reader</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #000 url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSIjRkZBMDAwIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxjaXJjbGUgY3g9IjQiIGN5PSI0IiByPSIxIi8+PGNpcmNsZSBjeD0iMzAiIGN5PSIxOSIgcj0iMiIvPjxjaXJjbGUgb3BhY2l0eT0iLjUiIGN4PSIxMTIiIGN5PSI1MCIgcj0iMS41Ii8+PGNpcmNsZSBjeD0iMTgwIiBjeT0iMzAiIHI9IjEiLz48Y2lyY2xlIGN4PSIxOTAiIGN5PSIxNTAiIHI9IjEuNSIvPjxjaXJjbGUgb3BhY2l0eT0iLjgiIGN4PSI5MCIgY3k9IjE4MCIgcj0iMSIvPjxjaXJjbGUgY3g9IjQwIiBjeT0iMTUwIiByPSIxLjUiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSI5MCIgcj0iMS41Ii8+PC9nPjwvc3ZnPg==');
+      height: 100%;
+      position: relative;
+    }
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+    .content {
+      position: relative;
+      z-index: 10;
+      color: #ffd5a3;
+      text-align: center;
+      font-family: "Cinzel", serif;
+      padding-top: 30px; /* 减少顶部空间 */
+      pointer-events: none; /* 确保点击可以穿透到下面的元素 */
+      background: radial-gradient(circle at center, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0) 100%);
+      padding: 50px 20px 20px 20px; /* 减少内边距 */
+      width: 100%;
+      box-sizing: border-box;
+      border-radius: 15px;
+      margin: 0 auto;
+      max-width: 850px;
+    }
+    h1 {
+      font-size: 64px;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 20px;
+      margin: 0 20px;
+    }
+    /* 添加明亮的星点 */
+    .stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      background: transparent;
+      overflow: hidden;
+    }
+    
+    .star {
+      position: absolute;
+      background-color: transparent;
+      border-radius: 50%;
+      animation: twinkle 5s infinite ease-in-out;
+    }
+    
+    .star::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, #FFA500, transparent 70%);
+      border-radius: 50%;
+    }
+    
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+
+    /* 添加光晕效果 */
+    body::after {
+      content: '';
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at center, transparent 30%, rgba(80, 20, 0, 0.6) 100%);
+      z-index: -1;
+      animation: rotate 60s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* 添加手掌图像与星空融合 */
+    .palm-background {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 100%;
+      background-image: url('palm_ui_visual_3.jpg');
+      background-size: cover; 
+      background-position: center center; /* 居中对齐背景图 */
+      background-repeat: no-repeat;
+      opacity: 0.95;
+      border-radius: 0;
+      box-shadow: 0 0 150px 50px rgba(180, 70, 30, 0.4);
+      z-index: 0;
+      pointer-events: none;
+      mask-image: radial-gradient(ellipse 100% 100% at center, black 30%, transparent 95%);
+      -webkit-mask-image: radial-gradient(ellipse 100% 100% at center, black 30%, transparent 95%);
+      animation: fadeIn 0.8s ease-out forwards;
+      opacity: 0;
+    }
+    
+    /* 添加响应式布局调整 */
+    @media (max-height: 700px) {
+      .content {
+        padding-top: 40px; /* 较小屏幕上减少顶部填充 */
+      }
+      
+      h1 {
+        font-size: 48px; /* 较小屏幕上减小标题 */
+        margin-bottom: 10px;
+      }
+    }
+    
+    /* 调整按钮样式与新背景匹配 */
+    .upload-btn-container {
+      margin-top: 150px; /* 增加按钮顶部间距，远离手指区域 */
+      position: relative;
+      z-index: 20; /* 确保在最顶层 */
+    }
+    
+    .upload-btn {
+      display: inline-block; 
+      padding: 12px 24px; 
+      background: rgba(20, 10, 0, 0.7); /* 更深的背景色增强可读性 */
+      border: 2px solid #FFA846; 
+      border-radius: 8px; 
+      color: #FFD5A3; 
+      cursor: pointer; 
+      font-size: 18px; 
+      transition: all 0.3s ease;
+      pointer-events: auto;
+      opacity: 0;
+      transform: translateX(-50px);
+      animation: slideInFromLeft 1.5s ease-out 0.8s forwards;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.7), 0 0 30px rgba(255, 168, 70, 0.4);
+      margin-top: 20px;
+    }
+    
+    .upload-btn:hover {
+      background: rgba(60, 30, 0, 0.8);
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 168, 70, 0.6);
+    }
+    
+    /* 页面元素淡入动画 */
+    h1, p {
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: fadeInDown 1.2s ease-out 0.3s forwards;
+    }
+    
+    /* 底部版权信息单独设置 */
+    .copyright {
+      opacity: 0;
+      animation: fadeIn 1s ease-out 2s forwards;
+      pointer-events: auto;
+    }
+    
+    /* 动画关键帧定义 */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes fadeInDown {
+      from { 
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes slideInFromLeft {
+      from { 
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars" id="stars-container"></div>
+  <div class="palm-background"></div>
+  <div class="content">
+    <h1>MYSTIC PALM READER</h1>
+    <p>Upload a photo of your palm for AI-powered fortune reading</p>
+    <div class="upload-btn-container">
+      <label for="palm-upload" class="upload-btn">
+        Upload Your Palm Photo
+      </label>
+      <input id="palm-upload" type="file" accept="image/*" style="display: none;">
+    </div>
+    <p class="copyright" style="margin-top: 40px; font-size: 12px; opacity: 0.6;">&copy; 2025 palmoracleai.online</p>
+  </div>
+  
+  <!-- 移除重复内容区域，保持页面简洁 -->
+  
+  <script>
+    // 创建星星
+    const starsContainer = document.getElementById('stars-container');
+    const starCount = 30; // 减少星星数量，避免喧宾夺主
+    
+    for (let i = 0; i < starCount; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      
+      // 随机位置
+      const x = Math.random() * 100;
+      const y = Math.random() * 100;
+      
+      // 随机大小
+      const size = Math.random() * 4 + 1;
+      
+      // 随机动画延迟
+      const delay = Math.random() * 5;
+      
+      star.style.left = `${x}%`;
+      star.style.top = `${y}%`;
+      star.style.width = `${size}px`;
+      star.style.height = `${size}px`;
+      star.style.animationDelay = `${delay}s`;
+      
+      starsContainer.appendChild(star);
+    }
+  </script>
+</body>
+</html>
