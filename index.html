@@ -25,15 +25,15 @@
       color: #ffd5a3;
       text-align: center;
       font-family: "Cinzel", serif;
-      padding-top: 60px;
+      padding-top: 50px;
       pointer-events: none; /* 确保点击可以穿透到下面的元素 */
-      background: radial-gradient(circle at center, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%);
+      background: radial-gradient(circle at center, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0) 100%);
       padding: 80px 20px 20px 20px;
       width: 100%;
       box-sizing: border-box;
       border-radius: 15px;
       margin: 0 auto;
-      max-width: 800px;
+      max-width: 850px;
     }
     h1 {
       font-size: 64px;
@@ -100,8 +100,9 @@
     .palm-background {
       position: fixed;
       top: 0;
-      left: 0; /* 恢复居中 */
-      width: 60%; /* 进一步减小尺寸 */
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
       height: 100%;
       background-image: url('palm_ui_visual_3.jpg');
       background-size: cover; 
