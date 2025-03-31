@@ -1,0 +1,124 @@
+{
+    "name": "Palm Oracle AI Website",
+    "version": "1.0.0",
+    "description": "神秘手相阅读网站的开发规则",
+    
+    "files": {
+      "main": [
+        "pages/index.js",
+        "public/index.html",
+        "index.html"
+      ],
+      "sync": [
+        {
+          "source": "public/index.html",
+          "target": "index.html",
+          "syncCommand": "copy public\\index.html index.html"
+        }
+      ]
+    },
+    
+    {
+
+        "workflow": {
+      
+          "beforeModification": {
+      
+            "required": true,
+      
+            "steps": [
+      
+              "确认要修改的内容和目的",
+      
+              "讨论可能的实现方案",
+      
+              "获得明确的修改指令",
+      
+              "明确告知用户将要修改的内容，得到确认后再执行"
+      
+            ]
+      
+          },
+      
+          
+      
+          "afterModification": {
+      
+            "required": true,
+      
+            "steps": [
+      
+              "同步HTML文件: copy public\\index.html index.html",
+      
+              "检查修改状态: git status",
+      
+              "添加修改文件: git add public/index.html index.html",
+      
+              "提交更改: git commit -m \"描述性的提交信息\"",
+      
+              "推送到远程: git push origin main"
+      
+            ]
+      
+          }
+      
+        },
+      
+        
+      
+        "communication": {
+      
+          "problemResponse": "美女，我需要确认index.html文件，请帮我改一下",
+      
+          "confirmationResponse": "美女，我知道了",
+      
+          "completionNotice": "修改已完成，请按以下步骤进行Git提交：\n1. git status\n2. git add public/index.html index.html\n3. git commit -m \"修改描述\"\n4. git push origin main"
+      
+        },
+      
+        
+      
+        "responsibilities": {
+      
+          "assistant": [
+      
+            "负责所有代码修改",
+      
+            "提供详细的修改解释",
+      
+            "指出用户可能没有观察到的问题"
+      
+          ],
+      
+          "user": [
+      
+            "确认修改内容",
+      
+            "执行Git推送操作",
+      
+            "提供最终决策"
+      
+          ]
+      
+        },
+      
+        
+      
+        "instructions": {
+      
+          "format": "stepByStep",
+      
+          "detail": "high",
+      
+          "numbering": true
+      
+        },
+      
+        
+      
+        "codeStyle": {
+      
+        }
+      
+      } 
+      

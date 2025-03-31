@@ -41,6 +41,27 @@ export default function Home() {
       <Head>
         <title>神秘掌相 | 命运之门</title>
         <meta name="description" content="AI驱动的掌相分析，融合东方神秘与现代设计。" />
+        <style jsx global>{`
+          .upload-instruction {
+            color: #ffd5a3;
+            font-size: 20px;
+            margin-top: 10px;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeInDown 1.2s ease-out 0.4s forwards;
+          }
+          
+          @keyframes fadeInDown {
+            from { 
+              opacity: 0;
+              transform: translateY(-20px);
+            }
+            to { 
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+        `}</style>
       </Head>
 
       <Image
@@ -61,6 +82,8 @@ export default function Home() {
         >
           神秘掌相 · 命运之门
         </motion.h1>
+
+        <p className="upload-instruction">Upload a photo of your palm for AI-powered fortune reading</p>
 
         <motion.div
           className="mt-10 w-60 h-60"
