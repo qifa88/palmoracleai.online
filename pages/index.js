@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 import lottie from 'lottie-web';
 import Head from 'next/head';
-import Image from 'next/image';
 
 export default function Home() {
   const fileInputRef = useRef(null);
@@ -37,7 +36,7 @@ export default function Home() {
   };
 
   return (
-    <div className="relative bg-black min-h-screen text-gold flex flex-col items-center justify-center px-4 overflow-hidden">
+    <div className="relative bg-black min-h-screen w-screen text-gold flex flex-col items-center justify-center px-0 overflow-hidden">
       <Head>
         <title>Mystic Palm Oracle | Gateway to Destiny</title>
         <meta name="description" content="AI-powered palm reading, blending Eastern mysticism with modern design." />
@@ -64,15 +63,15 @@ export default function Home() {
         `}</style>
       </Head>
 
-      <Image
-        src="/palm_ui_visual_3.jpg"
-        alt="Mystic Palm Background"
-        layout="fill"
-        objectFit="cover"
-        quality={95}
-        className="z-0 opacity-50 blur-[1px]"
-        style={{ transform: "scale(1.1)" }}
-      />
+      {/* CSS背景图像替代Image组件 */}
+      <div 
+        className="absolute inset-0 w-full h-full bg-center bg-no-repeat z-0" 
+        style={{
+          backgroundImage: 'url(/palm_ui_visual_3.jpg)',
+          backgroundSize: '100% 100%',
+          opacity: 0.7
+        }}>
+      </div>
 
       <div className="relative z-10 flex flex-col items-center mt-16 w-full">
         <motion.h1
@@ -80,24 +79,12 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2 }}
           className="text-5xl font-bold text-center text-yellow-300 tracking-widest drop-shadow-xl"
-          style={{ 
-            position: 'absolute',
-            top: '15vh',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            zIndex: 30
-          }}
+          style={{ marginTop: '50px' }}
         >
           MYSTIC PALM READER
         </motion.h1>
 
-        <p className="upload-instruction" style={{ 
-          position: 'absolute',
-          top: 'calc(15vh + 60px)',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          zIndex: 30
-        }}>Upload a photo of your palm for AI-powered fortune reading</p>
+        <p className="upload-instruction mt-2">Upload a photo of your palm for AI-powered fortune reading</p>
       </div>
 
       <motion.div
