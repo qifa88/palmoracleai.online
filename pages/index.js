@@ -7,7 +7,6 @@ import Head from 'next/head';
 export default function Home() {
   const fileInputRef = useRef(null);
   const router = useRouter();
-  const [previewURL, setPreviewURL] = useState(null);
 
   useEffect(() => {
     const element = document.getElementById('lottie-enter');
@@ -26,7 +25,6 @@ export default function Home() {
     const file = event.target.files?.[0];
     if (file) {
       const imageURL = URL.createObjectURL(file);
-      setPreviewURL(imageURL);
       router.push({ pathname: '/analyze', query: { image: imageURL } });
     }
   };
@@ -36,51 +34,23 @@ export default function Home() {
   };
 
   return (
-    <div className="fixed inset-0 overflow-hidden bg-black">
+    <div className="fixed inset-0 bg-black flex justify-center items-center">
       <Head>
         <title>Mystic Palm Oracle | Gateway to Destiny</title>
-        <meta name="description" content="AI-powered palm reading, blending Eastern mysticism with modern design." />
+        <meta name="description" content="AI-powered palm reading, blending ancient mysticism with modern technology." />
       </Head>
 
-      {/* 背景图 - 修复居中对齐问题 */}
-      <div 
-        className="absolute inset-0 flex justify-center items-center" 
-        style={{
-          background: 'url(/palm_ui_visual_3.jpg) no-repeat center center',
-          backgroundSize: 'cover',
-          width: '100vw',
-          height: '100vh'
-        }}>
-      </div>
+      {/* 背景图 - 使用img标签可以确保图片完整不被裁剪 */}
+      <img 
+        src="/palm_ui_visual_3.jpg" 
+        alt="Mystic Palm Background"
+        className="max-h-screen max-w-screen object-contain absolute z-0"
+      />
 
-      {/* 动画 */}
-      <motion.div 
-        style={{
-          position: 'absolute',
-          top: '45%',
-          left: '26%',
-          width: '120px',
-          height: '120px',
-          zIndex: 10
-        }}
-        initial={{ scale: 0.9, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ delay: 0.8, duration: 1 }}
-      >
-        <div id="lottie-enter" className="w-full h-full"></div>
-      </motion.div>
-
-      {/* 上传按钮 */}
+      {/* 上传按钮 - 透明背景让背景图设计完全显示 */}
       <motion.button
-        className="px-8 py-3 border border-yellow-400 text-yellow-200 rounded-full hover:bg-yellow-500 hover:text-black transition backdrop-blur-md"
-        style={{ 
-          position: 'absolute',
-          top: '58%',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          zIndex: 20,
-          opacity: 0.8
-        }}
+        className="absolute z-20 bottom-32 px-8 py-3 bg-transparent border border-yellow-400/50 text-yellow-200/70 rounded-full hover:bg-yellow-500/30 hover:text-yellow-100 transition"
+        style={{ opacity: 0.7 }}
         whileHover={{ scale: 1.05, opacity: 1 }}
         whileTap={{ scale: 0.95 }}
         onClick={triggerUpload}
