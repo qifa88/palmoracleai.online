@@ -73,13 +73,19 @@ export default function Home() {
         }}>
       </div>
 
-      <div className="relative z-10 flex flex-col items-center mt-16 w-full">
+      <div className="relative z-10" style={{ 
+        position: 'absolute', 
+        top: '28%',  // 调整到大拇指和食指之间
+        left: '50%', 
+        transform: 'translateX(-50%)',
+        width: '70%',
+        textAlign: 'center'
+      }}>
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2 }}
           className="text-5xl font-bold text-center text-yellow-300 tracking-widest drop-shadow-xl"
-          style={{ marginTop: '50px' }}
         >
           MYSTIC PALM READER
         </motion.h1>
@@ -87,8 +93,14 @@ export default function Home() {
         <p className="upload-instruction mt-2">Upload a photo of your palm for AI-powered fortune reading</p>
       </div>
 
-      <motion.div
-        className="mt-6 w-40 h-40"
+      <motion.div 
+        style={{
+          position: 'absolute',
+          top: '42%',  // 大约是Love文字位置
+          left: '37%',  // 在左侧但不与Love重叠
+          width: '160px',
+          height: '160px'
+        }}
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 0.8, duration: 1 }}
@@ -97,7 +109,13 @@ export default function Home() {
       </motion.div>
 
       <motion.button
-        className="mt-8 px-8 py-3 border border-yellow-400 text-yellow-200 rounded-full hover:bg-yellow-500 hover:text-black transition shadow-lg backdrop-blur-md"
+        className="px-8 py-3 border border-yellow-400 text-yellow-200 rounded-full hover:bg-yellow-500 hover:text-black transition shadow-lg backdrop-blur-md"
+        style={{ 
+          position: 'absolute',
+          top: '42%',  // 与"love"文字对齐
+          left: '25%',  // 在love旁边但不重叠
+          zIndex: 20
+        }}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={triggerUpload}
